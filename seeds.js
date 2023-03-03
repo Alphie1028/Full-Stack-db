@@ -38,11 +38,11 @@ function executeStatements(statements) {
   }
 
     const statement = statements.shift();
-  pool.query(statement, (err) => {
-    if (err) {
-      console.error('Error executing statement:', statement, err);
-      return pool.end();
-    }
+    pool.query(statement, (err) => {
+        if (err) {
+            console.error('Error executing statement:', statement, err);
+            return pool.end();
+        }
     executeStatements(statements);
   });
 }
