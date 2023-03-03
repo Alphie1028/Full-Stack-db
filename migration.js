@@ -5,9 +5,9 @@ pool.query(`
     CREATE TABLE developers (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL
-)`, (err, res)=>{
+)`, (err)=>{
     if(err){
-        return res.send(err);
+        return pool.end();
     }
 
 
@@ -19,9 +19,9 @@ pool.query(`
             developer_id INT NOT NULL,
             FORIGN KEY (developer_id) REFRENCES developers (id)
         )
-    `, (err, res)=>{
+    `, (err)=>{
         if(err){
-            return res.send(err);
+            console.log(err);
         } else{
             console.log('Tables made');
         }
