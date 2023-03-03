@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  postgres-db:
+    container_name: postgres_db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: alphie
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: games_db
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    restart: always
+    env_file:
+      - pgadmin.env
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmindata:/var/lib/pgadmin
+    depends_on:
+      - postgres-db
+
+  # express:
+  #   container_name: expressServer
+  #   build: .
+  #   restart: always
+  #   environment:
+  #     PGUSER: alphie
+  #     PGPASSWORD: password
+  #     PGDATABASE: games_db
+  #     PGHOST: postgres-db
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #           - postgres-db
+
+volumes:
+  dbdata:
+  pgadmindata:
