@@ -4,7 +4,10 @@
   "description": "",
   "main": "expressServer.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node expressServer.js",
+    "dev": "nodemon expressServer.js",
+    "migrate": "node migration.js",
+    "seed": "node seeds.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +21,7 @@
   "homepage": "https://github.com/Alphie1028/Full-Stack-db#readme",
   "dependencies": {
     "express": "^4.18.2",
+    "nodemon": "^2.0.21",
     "pg": "^8.9.0"
   }
 }
